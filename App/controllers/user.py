@@ -1,8 +1,8 @@
-from App.models import User
+from App.models import User, Routine
 from App.database import db
 
-def create_user(username, password):
-    newuser = User(username=username, password=password)
+def create_user(username, password, fname, lname):
+    newuser = User(username, password, fname, lname)
     db.session.add(newuser)
     db.session.commit()
     return newuser
@@ -22,6 +22,14 @@ def get_all_users_json():
         return []
     users = [user.get_json() for user in users]
     return users
+
+def createRoutine(user, name):
+    newRoutine = Routine(user, name)
+    db.session.add(newRoutine)
+    db.session.commit()
+    return newRoutine
+
+
 
 def update_user(id, username):
     user = get_user(id)
