@@ -75,7 +75,7 @@ body {
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 505px;
+  height: 315px;
   background-image: url("https://cdn.dribbble.com/userupload/9695268/file/original-7b4c5cf7a9a8b560e27036de620982dd.jpg?resize=752x");
   background-position: center center;
   background-size: cover;
@@ -87,17 +87,79 @@ body {
   justify-content: flex-start;
   margin-top: 20px;
   margin-left: 50px;
+  margin-bottom: 40px;
 }
 
-.text-container button{
+.text-container button {
   margin-left: 20px;
   border-radius: 5px;
   width: 100px;
 }
 
-.card-container{
+.card-container {
   margin-left: 50px;
-  fLex-wrap:wrap;
-  margin-top: 100px;
+  flex-wrap: wrap;
+  margin-top: 10px;
 }
 
+.card {
+  margin-right: 50px;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: Opx 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.percent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border-color: green;
+}
+
+.percent-border {
+  background-color: #dee1e5;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  width: 120px;
+}
+
+.card-text {
+  margin-left: 100px;
+}
+
+.button-container {
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+.button-r {
+  text-decoration: none;
+  background-color: #c8f8ff;
+  border-radius: 5px;
+  font-size: 10px;
+  height: 50px;
+  width: 100px;
+}
+
+.button-w {
+  margin-left: 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  background-color: #4aa3a9;
+  font-size: 10px;
+  height: 50px;
+  width: 100px;
+}
+
+.button-w text{
+  color: white;
+}
