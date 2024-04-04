@@ -4,7 +4,7 @@ from flask.cli import with_appcontext, AppGroup
 
 from App.database import db, get_migrate
 from App.main import create_app
-from App.controllers import ( create_user, get_all_users_json, get_all_users, createRoutine, createWorkout )
+from App.controllers import ( create_user, get_all_users_json, get_all_users, createRoutine, createWorkout, addWorkout, getWorkout )
 # This commands file allow you to create convenient CLI commands for testing controllers
 
 app = create_app()
@@ -16,8 +16,10 @@ def initialize():
     db.drop_all()
     db.create_all()
     user = create_user('bob', 'bobpass', 'bob', 'doe')
-    routine = createRoutine(user, "Chest Routine")
-    print(routine.owner.firstName)
+    routine1 = createRoutine(user, "Chest Routine")
+    routine2 = createRoutine(user, "Back Routine")
+    
+    # print(routine.owner.firstName)
 
     with open('exercises.csv') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -37,7 +39,17 @@ def initialize():
             createWorkout(row['name'], row['bodyPart'], row['equipment'], instructions)
 
 
+    workout1 = getWorkout(1)
+    workout2 = getWorkout(2)
+    addWorkout(routine1, workout1, 3, 8, 45)
+    addWorkout(routine2, workout1, 3, 8, 45)
+    addWorkout(routine1,workout2, 3, 8, 45)
 
+    for r in workout1.routines:
+        print(r.name)
+
+    for w in routine1.workouts:
+        print(w.workout.name)
 
     # print(get_all_users_json)
 

@@ -1,3 +1,4 @@
 from .user import *
-from .routine import *
 from .workouts import *
+from .routineWorkouts import *
+from .routines import *
