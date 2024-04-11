@@ -33,32 +33,19 @@
             <h1>Recent Routines</h1>
             <button>View All</button>
         </div>
-        <div class="card-container">
-            <div class="card" >
-                <div class="percent-border">
-                    <div class="percent">
-                        <p>50%</p>
+        {% if user.routines %} 
+            {% for r in user.routines %}
+                <div class="card-container">
+                    <div class="card" >
+                        <div class="card-text">
+                            <h3> {{r.name}}</h3>
+                            <!-- <p>3 Workouts day</p> -->
+                        </div>
                     </div>
                 </div>
-                <div class="card-text">
-                    <h3>Chest + Triceps</h3>
-                    <p>3 Workouts day</p>
-                </div>
-            </div>
-        </div>
-        <div class="card-container">
-            <div class="card">
-                <div class="percent-border">
-                    <div class="percent">
-                        <p>0%</p>
-                    </div>
-                </div>
-                <div class="card-text">
-                    <h3>Legs</h3>
-                    <p>4 Workouts day</p>
-                </div>
-            </div>
-        </div>
+            {% endfor %}
+         {% endif %}
+        
     </div>
     <div class="button-container">
         <button class="button-r">
