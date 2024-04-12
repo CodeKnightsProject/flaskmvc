@@ -29,6 +29,11 @@ body {
   width: 100%;
 }
 
+.split-exercise{
+  display: flex;
+  justify-content: space-between;
+}
+
 .right-side img {
   max-width: 160px;
   max-height: 50px;
@@ -93,25 +98,12 @@ body {
   box-shadow: Opx 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.percent {
+.card-spilt {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  border-color: green;
+  justify-content: space-between;
 }
 
-.percent-border {
-  background-color: #dee1e5;
-  border-style: solid;
-  border-radius: 10px;
-  border-color: green;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;
-  width: 120px;
-}
+
 
 .card-text {
   margin-left: 100px;
@@ -156,7 +148,7 @@ body {
 }
 
 .exercise {
-  width: 800px;
+  width: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
