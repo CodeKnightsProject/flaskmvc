@@ -30,3 +30,8 @@ def removeWorkout(self):
         db.session.commit()
         return True
     return None
+
+
+def get_routine(id):
+    routine = Routines.query.get(id)
+    return routine if routine else None

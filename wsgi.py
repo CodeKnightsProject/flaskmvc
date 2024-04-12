@@ -5,6 +5,7 @@ from flask.cli import with_appcontext, AppGroup
 from App.database import db, get_migrate
 from App.main import create_app
 from App.controllers import ( create_user, get_all_users_json, get_all_users, createRoutine, createWorkout, addWorkout, getWorkout )
+from App.models import Routines
 # This commands file allow you to create convenient CLI commands for testing controllers
 
 app = create_app()
@@ -45,13 +46,12 @@ def initialize():
     addWorkout(routine2, workout1, 3, 8, 45)
     addWorkout(routine1,workout2, 3, 8, 45)
 
-    for r in workout1.routines:
-        print(r.name)
+    
 
-    for w in routine1.workouts:
-        print(w.workout.name)
-
-    # print(get_all_users_json)
+    for routine in user.routines:
+        print(routine.name)
+        for workouts in routine.workouts:
+            print(workouts.workout.name)
 
     print('database intialized')
 

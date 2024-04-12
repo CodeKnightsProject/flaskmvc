@@ -14,8 +14,8 @@ class RoutineWorkouts(db.Model):
 	workout = db.relationship('Workouts')
 
 	def __init__(self, routine, workout, sets, reps, restTime):
-		self.routine = routine
-		self.workout = workout
+		# self.routine = routine
+		# self.workout = workout
 		self.sets = sets
 		self.reps = reps
 		self.rest_time = restTime

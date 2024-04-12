@@ -1,78 +1,89 @@
-from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify
+from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify, flash, url_for
 from App.models import db
-from App.controllers import create_user
+from App.controllers import(
+  create_user, 
+  createWorkout, 
+  createRoutine,
+  get_user_by_username,
+  getWorkout,
+  addWorkout
+)
+
+from App.models import User
+import csv
+
+from flask_jwt_extended import (
+    JWTManager,
+    create_access_token,
+    get_jwt_identity,
+    jwt_required,
+    current_user,
+    set_access_cookies,
+    unset_jwt_cookies,
+    current_user,
+)
 
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
 
 def initialize_db():
   db.drop_all()
   db.create_all()
-  with open('exercises.csv', newline='', encoding='utf8') as csvfile:
+  user = create_user('bob', 'bobpass', 'bob', 'doe')
+  # createRoutine(user, "Chest Routine")
+  # createRoutine(user, "Back Routine")
+
+  with open('exercises.csv') as csvfile:
     reader = csv.DictReader(csvfile)
-      for row in reader:
-          if row['bodyPart'] == '':
-              row['bodyPart'] = None
-          if row['equipment'] == '':
-              row['equipment'] = None
-          if row['name'] == '':
-              row['name'] = None
-          if row['instructions/0'] == '':
-              row['instructions/0'] = None
-          if row['instructions/1'] == '':
-              row['instructions/1'] = None
-          if row['instructions/2'] == '':
-            row['instructions/2'] = None
-          if row['instructions/3'] == '':
-            row['instructions/3'] = None
-          if row['instructions/4'] == '':
-            row['instructions/4'] = None
-          if row['instructions/5'] == '':
-            row['instructions/5'] = None
-          if row['instructions/6'] == '':
-            row['instructions/6'] = None
-          if row['instructions/7'] == '':
-            row['instructions/7'] = None
-          if row['instructions/8'] == '':
-            row['instructions/8'] = None
-          if row['instructions/9'] == '':
-            row['instructions/9'] = None
-          if row['instructions/10'] == '':
-            row['instructions/10'] = None
-          
-      instructions = row['instructions/0'] + row['instructions/1'] + row['instructions/2'] + row['instructions/3'] + row['instructions/4'] + row['instructions/5'] + row['instructions/6'] + row['instructions/7'] + row['instructions/8'] + row['instructions/9'] + row['instructions/10']
+    for row in reader:
+      if row['bodyPart'] == '':
+        row['bodyPart'] = None
+      if row['equipment'] == '':
+        row['equipment'] = None
+      if row['name'] == '':
+        row['name'] = None
+      if row['instructions/0'] == '':
+        row['instructions/0'] = None
+      if row['instructions/1'] == '':
+        row['instructions/1'] = None
+
+      instructions = row['instructions/0'] + row['instructions/1']
       createWorkout(row['name'], row['bodyPart'], row['equipment'], instructions)
-      workouts=Workouts (name=row['name'], bodyPart=row['bodyPart'], equipment=row['equipment'], instructions=instructions)
-      i = 1
-      while i < 11:
-        next_instruction = row['instructions/<i>']
-        workouts.instructions.append(next_instruction)
-        i+=1
-      db.session.add(workouts)
+
+      workout1 = getWorkout(1)
+      workout2 = getWorkout(2)
+      # addWorkout(routine1, workout1, 3, 8, 45)
+      # addWorkout(routine2, workout1, 3, 8, 45)
+      # addWorkout(routine1,workout2, 3, 8, 45)
+
+  print('database intialized')
 
 
 @index_views.route('/', methods=['GET'])
 def index_page():
-    return render_template('index.html')
+  initialize_db()
+  bob = User.query.get(1)
+  routine1 = createRoutine(bob, "Chest Routine")
+  routine2 = createRoutine(bob, "Back Routine")
+  
 
-@index_views.route('/init', methods=['GET'])
-def init():
-    db.drop_all()
-    db.create_all()
-    initialize_db()
-    create_user('bob', 'bobpass')
-    return jsonify(message='db initialized!')
+  return render_template('login.html', user=bob)
 
-@index_views.route('/health', methods=['GET'])
-def health_check():
-    return jsonify({'status':'healthy'})
+@index_views.route('/home', methods=['GET'])
+@jwt_required()
+def home():
+  bob = User.query.get(1)
+  # if bob:
+  #   print(bob.name)
 
-@app.route("/app",methods=['GET'])
-@app.route("/app/workouts",methods= ['GET'])
-@jwt_required
-def get_workouts():
-    workouts = Workouts.query.all()
-    workout_list= [workouts.get_json() for workouts in workouts]
-    return jsonify(workout_list)
+  return render_template('index.html', user=bob)
+
+# @app.route("/app",methods=['GET'])
+# @app.route("/app/workouts",methods= ['GET'])
+# @jwt_required
+# def get_workouts():
+#     workouts = Workouts.query.all()
+#     workout_list= [workouts.get_json() for workouts in workouts]
+#     return jsonify(workout_list)
 
 
 
