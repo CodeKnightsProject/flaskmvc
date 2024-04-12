@@ -50,24 +50,37 @@
                         <h2>Edit Routine</h2>
                     </div>
                     <form method="POST" action=''>
-                        <label for="guests">Routine Name:</label>
-                        <input type="text" name="routine-name" id="" placeholder="Routine Name">
-                        <label for="guests">Number of Sets:</label>
-                        <input type="number" id="guests" name="min-nights" min="1" required>
-                        <label for="guests">Number of Reps:</label>
-                        <input type="number" id="guests" name="min-nights" min="1" required>
-                        <div class="checkbox-group">
-                            <label>Weights Needed:</label>
-                            <label><input type="checkbox" name="pets" value="not-allowed" onchange="adjustValue(this)">
-                                yes</label>
-                            <label><input type="checkbox" name="smoking" value="not-allowed"
-                                    onchange="adjustValue(this)"> no</label>
 
-                        </div>
-                        <label for="guests">Weight in kg:</label>
-                        <input type="number" id="guests" name="min-nights" min="1" required>
-
-                        <button type="submit">Submit</button>
+                        <div class="form-split">
+                            <div class="split-form-top">
+                                <label for="workout-form">Workout Name: workout.name</label>
+                                <div>
+                                    <label for="workout-form">Number of Sets:</label>
+                                    <input type="number" id="guests" name="sets" min="1" required value="100000">
+                                </div>
+                            </div>
+                            <div class="form-spilt-bottom">
+                                <label for="workout-form">Number of Reps:</label>
+                                <input type="number" id="guests" name="reps" min="1" required value="100000">
+                                <label for="workout-form">Rest Time between Sets:</label>
+                                <input type="number" id="guests" name="rest-time" min="1" required value="100000">
+                            </div>
+                            <div class="bodypart">
+                                <label for="bodypart">Body Part:</label>
+                                <p>Blah Blah</p>
+                            </div>
+                            <div class="equipment">
+                                <label for="equipment">Equipment:</label>
+                                <p>Blah Blah</p>
+                            </div>
+                            <div class="instructions">
+                                <label for="instructions">Instructions:</label>
+                                <p>Blah Blah</p>
+                            </div>
+                            <div class="split-button">
+                                <button type="submit">Submit</button>
+                                <button type="submit">Delete</button>
+                            </div>
                     </form>
                 </div>
             </div>

@@ -223,11 +223,12 @@ form {
 
 .split-button{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .split-button button{
   width: 100px;
+  margin-left: 80px;
 }
 
 .bodypart{
