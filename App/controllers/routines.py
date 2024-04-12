@@ -23,8 +23,8 @@ def addWorkout(routine, workout, sets, reps, restTime):
     return newRoutineWorkout
     
 
-def removeWorkout(self):
-    workout = RoutineWorkouts.query.filter_by(id=self.id).first
+def removeWorkout(id):
+    workout = RoutineWorkouts.query.filter_by(id=id).first()
     if workout:
         db.session.delete(workout)
         db.session.commit()

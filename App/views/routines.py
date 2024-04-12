@@ -11,7 +11,8 @@ from App.controllers import (
     getWorkout,
     addWorkout,
     update_routine_workout,
-    get_routine_workout
+    get_routine_workout,
+    removeWorkout
   )
 
 routines_views = Blueprint('routines_views', __name__, template_folder='../templates')
@@ -34,3 +35,9 @@ def routine_workouts(id, routine_workout_id=1):
     workout = update_routine_workout(sets=int(data['sets']),reps=int(data['reps']), rest_time=int(data['rest-time']), id=workout.id)
   
   return render_template('routine.html', routine=selected_routine, workouts=workouts, workout=workout)
+
+@routines_views.route('/delete/<int:routine_workout_id>', methods=['GET'])
+@jwt_required()
+def delete_routine_workout_action(routine_workout_id):
+  removeWorkout(routine_workout_id)
+  return redirect(url_for('routines_views.routine_workouts', id=1))

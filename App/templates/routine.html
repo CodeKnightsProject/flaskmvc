@@ -19,7 +19,7 @@
                     alt="">
             </ul>
             <ul class="left-side">
-                <li><a href="" class="active">Home</a></li>
+                <li><a href="{{ url_for('index_views.home') }}" >Home</a></li>
                 <li><a href="">Routines</a></li>
                 <li><a href="">Workouts</a></li>
                 <li><a href="">Logout</a></li>
@@ -33,7 +33,7 @@
         <div class="split">
             <div class="workout-container" >
                 {% for workout in workouts %}
-                <a href="" class="card-workouts">
+                <a href='/routine/{{routine.id}}/workout/{{workout.id}}' class="card-workouts">
                     <div class="card-text">
                         <h3>{{workout.workout.name}}</h3>
                         <p>3 Workouts day</p>
@@ -49,21 +49,21 @@
                     <div class="routine-form">
                         <h2>Edit Routine</h2>
                     </div>
-                    <form method="POST" action=''>
+                    <form method="POST" action='/routine/{{routine.id}}/workout/{{workout.id}}'>
 
                         <div class="form-split">
                             <div class="split-form-top">
-                                <label for="workout-form">Workout Name: workout.name</label>
+                                <label for="workout-form">Workout Name: {{workout.workout.name}}</label>
                                 <div>
                                     <label for="workout-form">Number of Sets:</label>
-                                    <input type="number" id="guests" name="sets" min="1" required value="100000">
+                                    <input type="number" id="guests" name="sets" min=3 required value={{workout.sets}}>
                                 </div>
                             </div>
                             <div class="form-spilt-bottom">
                                 <label for="workout-form">Number of Reps:</label>
-                                <input type="number" id="guests" name="reps" min="1" required value="100000">
+                                <input type="number" id="guests" name="reps" min=3 required value={{workout.reps}}>
                                 <label for="workout-form">Rest Time between Sets:</label>
-                                <input type="number" id="guests" name="rest-time" min="1" required value="100000">
+                                <input type="number" id="guests" name="rest-time" required value={{workout.rest_time}}>
                             </div>
                             <div class="bodypart">
                                 <label for="bodypart">Body Part:</label>
@@ -79,7 +79,8 @@
                             </div>
                             <div class="split-button">
                                 <button type="submit">Submit</button>
-                                <button type="submit">Delete</button>
+
+                                <a href='/delete/{{workout.id}}'>Delete</a>
                             </div>
                     </form>
                 </div>

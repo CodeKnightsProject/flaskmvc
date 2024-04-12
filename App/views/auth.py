@@ -32,6 +32,7 @@ def login_action():
     response = redirect('/home')
     if not token:
         flash('Bad username or password given'), 401
+        return redirect(request.referrer)
     else:
         flash('Login Successful')
         set_access_cookies(response, token) 
