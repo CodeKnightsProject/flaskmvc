@@ -31,34 +31,47 @@
             <h1>{{routine.name}}</h1>
         </div>
         <div class="split">
-            <div class="workout-container">
+            <div class="workout-container" >
                 {% for workout in workouts %}
-                <div class="card-workouts">
+                <a href="" class="card-workouts">
                     <div class="card-text">
                         <h3>{{workout.workout.name}}</h3>
                         <p>3 Workouts day</p>
                     </div>
                     <div class="edit-button">
-                        <input type="checkbox"></input>
                     </div>
-                </div>
+                </a>
                 {% endfor %}
-                
+
             </div>
 
             <div class="exercise">
-                <h1>Chest + Triceps</h1>
-                <h2>sets 10 x 4 x 20kg</h2>
-                <p>notes</p>
+                <div class="form-container">
+                    <div class="routine-form">
+                        <h2>Edit Routine</h2>
+                    </div>
+                    <form method="POST" action=''>
+                        <label for="guests">Routine Name:</label>
+                        <input type="text" name="routine-name" id="" placeholder="Ro">
+                        <label for="guests">Number of Sets:</label>
+                        <input type="number" id="guests" name="min-nights" min="1" required>
+                        <label for="guests">Number of Reps:</label>
+                        <input type="number" id="guests" name="min-nights" min="1" required>
+                        <div class="checkbox-group">
+                            <label>Weights Needed:</label>
+                            <label><input type="checkbox" name="pets" value="not-allowed" onchange="adjustValue(this)">
+                                yes</label>
+                            <label><input type="checkbox" name="smoking" value="not-allowed"
+                                    onchange="adjustValue(this)"> no</label>
+
+                        </div>
+                        <label for="guests">Weight in kg:</label>
+                        <input type="number" id="guests" name="min-nights" min="1" required>
+
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
             </div>
-        </div>
-        <div class="button-container">
-            <button class="button-r">
-                Create Routine
-            </button>
-            <button class="button-w">
-                Browse Workouts
-            </button>
         </div>
     </div>
 </div>

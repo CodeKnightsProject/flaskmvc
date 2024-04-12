@@ -91,26 +91,34 @@ body {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: Opx 2px 4px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
 }
 
-.percent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  border-color: green;
+.card-workouts:hover
+{
+box-shadow: 0 5px 35px 0px rgba(0,0,0,.1);
+}
+.card-workouts:hover::before, div:hover::after
+{
+display: block;
+content: '';
+position: absolute;
+background: #face30;
+border-radius: 10px;
+z-index: -1;
+animation: 1s;
+}
+.card-workouts:hover:after
+{
+background: #ff7200;
+animation: 2s;
 }
 
-.percent-border {
-  background-color: #dee1e5;
-  border-style: solid;
-  border-radius: 10px;
-  border-color: green;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;
-  width: 120px;
+.workout-container {
+  height: 400px;
+  width: 550px;
+  overflow: auto;
+  overflow-y: scroll;
 }
 
 .card-text {
@@ -191,4 +199,49 @@ body {
 
 .button-w text {
   color: white;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 10px;
+  color: #333;
+}
+
+input,
+select {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4cae4c;
+}
+
+.checkbox-group {
+  margin-top: 10px;
+}
+.checkbox-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.flex-container {
+  display: flex;
+  width: 800px;
 }
