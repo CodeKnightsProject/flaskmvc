@@ -18,8 +18,8 @@ from App.controllers import (
 routines_views = Blueprint('routines_views', __name__, template_folder='../templates')
 
 @routines_views.route('/myroutines', methods=['GET'])
-def my_routines():
-#   initialize_db()
+@jwt_required()
+def routine_workouts():
   bob = User.query.get(1)
 
   selected_routine = get_routine(1)

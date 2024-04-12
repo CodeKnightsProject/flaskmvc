@@ -66,13 +66,14 @@ def index_page():
   routine2 = createRoutine(bob, "Back Routine")
   
 
-  return render_template('index.html', user=bob)
+  return render_template('login.html', user=bob)
 
-@index_views.route('/app', methods=['GET'])
+@index_views.route('/home', methods=['GET'])
+@jwt_required()
 def home():
   bob = User.query.get(1)
-  if bob:
-    print(bob.name)
+  # if bob:
+  #   print(bob.name)
 
   return render_template('index.html', user=bob)
 
