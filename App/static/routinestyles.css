@@ -94,24 +94,22 @@ body {
   text-decoration: none;
 }
 
-.card-workouts:hover
-{
-box-shadow: 0 5px 35px 0px rgba(0,0,0,.1);
+.card-workouts:hover {
+  box-shadow: 0 5px 35px 0px rgba(0, 0, 0, 0.1);
 }
-.card-workouts:hover::before, div:hover::after
-{
-display: block;
-content: '';
-position: absolute;
-background: #face30;
-border-radius: 10px;
-z-index: -1;
-animation: 1s;
+.card-workouts:hover::before,
+div:hover::after {
+  display: block;
+  content: "";
+  position: absolute;
+  background: #face30;
+  border-radius: 10px;
+  z-index: -1;
+  animation: 1s;
 }
-.card-workouts:hover:after
-{
-background: #ff7200;
-animation: 2s;
+.card-workouts:hover:after {
+  background: #ff7200;
+  animation: 2s;
 }
 
 .workout-container {
@@ -123,6 +121,7 @@ animation: 2s;
 
 .card-text {
   margin-left: 100px;
+  color: black;
 }
 
 .text-container {
@@ -166,7 +165,6 @@ animation: 2s;
 .exercise {
   width: 800px;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -201,9 +199,48 @@ animation: 2s;
   color: white;
 }
 
+.form-container {
+  width: 800px;
+}
+
 form {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+.split-form-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.form-spilt-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.split-button{
+  display: flex;
+  justify-content: center;
+}
+
+.split-button button{
+  width: 100px;
+  margin-left: 80px;
+}
+
+.bodypart{
+  margin-bottom: 15px;
+}
+
+.equipment{
+  margin-bottom: 15px;
+}
+
+.instructions{
+  margin-bottom: 15px;
 }
 
 label {
@@ -233,15 +270,4 @@ button:hover {
   background-color: #4cae4c;
 }
 
-.checkbox-group {
-  margin-top: 10px;
-}
-.checkbox-group label {
-  display: block;
-  margin-bottom: 5px;
-}
 
-.flex-container {
-  display: flex;
-  width: 800px;
-}

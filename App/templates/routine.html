@@ -31,9 +31,9 @@
             <h1>{{routine.name}}</h1>
         </div>
         <div class="split">
-            <div class="workout-container">
+            <div class="workout-container" >
                 {% for workout in workouts %}
-                <a href='/routine/{{routine.id}}/workout/{{workout.id}}' class="card-workouts">
+                <a href="" class="card-workouts">
                     <div class="card-text">
                         <h3>{{workout.workout.name}}</h3>
                         <p>3 Workouts day</p>
@@ -42,32 +42,45 @@
                     </div>
                 </a>
                 {% endfor %}
-
             </div>
 
             <div class="exercise">
                 <div class="form-container">
-                    <div class="workout-form">
+                    <div class="routine-form">
                         <h2>Edit Routine</h2>
                     </div>
+                    <form method="POST" action=''>
 
-                    <form method="POST" action='/routine/{{routine.id}}/workout/{{workout.id}}'>
-                        <label for="workout-form">Workout Name: {{workout.workout.name}}</label>
-
-                        <label for="workout-form">Number of Sets:</label>
-                        <input type="number" id="guests" name="sets" min=1 required value={{workout.sets}}>
-
-                        <label for="workout-form">Number of Reps:</label>
-                        <input type="number" id="guests" name="reps" min=3 required value={{workout.reps}}>
-
-                        <label for="workout-form">Rest Time between Sets:</label>
-                        <input type="number" id="guests" name="rest-time" 
-                            required  
-                            value={{workout.rest_time}}
-                        >
-
-                        <button type="submit">Submit</button>
-                        <button type="submit">Delete</button>
+                        <div class="form-split">
+                            <div class="split-form-top">
+                                <label for="workout-form">Workout Name: workout.name</label>
+                                <div>
+                                    <label for="workout-form">Number of Sets:</label>
+                                    <input type="number" id="guests" name="sets" min="1" required value="100000">
+                                </div>
+                            </div>
+                            <div class="form-spilt-bottom">
+                                <label for="workout-form">Number of Reps:</label>
+                                <input type="number" id="guests" name="reps" min="1" required value="100000">
+                                <label for="workout-form">Rest Time between Sets:</label>
+                                <input type="number" id="guests" name="rest-time" min="1" required value="100000">
+                            </div>
+                            <div class="bodypart">
+                                <label for="bodypart">Body Part:</label>
+                                <p>Blah Blah</p>
+                            </div>
+                            <div class="equipment">
+                                <label for="equipment">Equipment:</label>
+                                <p>Blah Blah</p>
+                            </div>
+                            <div class="instructions">
+                                <label for="instructions">Instructions:</label>
+                                <p>Blah Blah</p>
+                            </div>
+                            <div class="split-button">
+                                <button type="submit">Submit</button>
+                                <button type="submit">Delete</button>
+                            </div>
                     </form>
                 </div>
             </div>
