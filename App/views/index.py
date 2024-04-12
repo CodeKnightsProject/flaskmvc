@@ -49,11 +49,6 @@ def initialize_db():
       instructions = row['instructions/0'] + row['instructions/1']
       createWorkout(row['name'], row['bodyPart'], row['equipment'], instructions)
 
-      workout1 = getWorkout(1)
-      workout2 = getWorkout(2)
-      # addWorkout(routine1, workout1, 3, 8, 45)
-      # addWorkout(routine2, workout1, 3, 8, 45)
-      # addWorkout(routine1,workout2, 3, 8, 45)
 
   print('database intialized')
 
@@ -64,6 +59,11 @@ def index_page():
   bob = User.query.get(1)
   routine1 = createRoutine(bob, "Chest Routine")
   routine2 = createRoutine(bob, "Back Routine")
+  workout1 = getWorkout(1)
+  workout2 = getWorkout(2)
+  addWorkout(routine1, workout1, 3, 8, 45)
+  addWorkout(routine1, workout1, 3, 8, 45)
+  addWorkout(routine1, workout2, 3, 8, 45)
   
 
   return render_template('login.html', user=bob)

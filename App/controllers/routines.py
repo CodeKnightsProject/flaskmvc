@@ -31,7 +31,22 @@ def removeWorkout(self):
         return True
     return None
 
-
 def get_routine(id):
     routine = Routines.query.get(id)
     return routine if routine else None
+
+def update_routine_workout(id, sets, reps, rest_time):
+    workout = RoutineWorkouts.query.get(id)
+    workout.sets = sets
+    workout.reps = reps
+    workout.rest_time = rest_time
+    db.session.add(workout)
+    db.session.commit()
+    return workout
+
+def get_routine_workout(id):
+    workout = RoutineWorkouts.query.get(id)
+    if workout:
+        return workout
+    
+    return None
