@@ -156,7 +156,7 @@ body {
 .popup .overlay {
   position: fixed;
   top: 30px;
-  left: 270px;
+  left: 280px;
   width: 100vw;
   height: 100vh;
   z-index: 1;
@@ -165,7 +165,6 @@ body {
 
 .popup .content {
   position: absolute;
-  box-shadow: 0 5px 35px 0px rgba(0, 0, 0, 0.1);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
