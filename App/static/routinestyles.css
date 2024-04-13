@@ -105,6 +105,12 @@ body {
   overflow-y: scroll;
 }
 
+.workout-cards{
+  height: 300px;
+  overflow: auto;
+  overflow-y: scroll;
+}
+
 .card-text {
   margin-left: 100px;
   color: black;
@@ -197,9 +203,9 @@ body {
   transform: translate(-50%, -50%) scale(1);
 }
 
-.add-workout-btn {
-  margin-top: 40px;
-}
+/* .add-workout-btn {
+  
+} */
 
 
 

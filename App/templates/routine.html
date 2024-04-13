@@ -20,6 +20,7 @@
             window.location.href = '/routine/' + routineId + '/view-workouts/all';
 
         }
+        
     </script>
 
 </head>
@@ -49,7 +50,7 @@
                     <div class="content">
                         <div>
                             <div class="wrapper">
-                                <a href='/routine/{{ routine.id }}/view-workouts/all' class="item" onclick="toggleclick()">All</a>
+                                <a href='/routine/{{ routine.id }}/view-workouts/all' class="item">All</a>
                                 <a href='/routine/{{ routine.id }}/view-workouts/chest' class="item">chest</a>
                                 <a href='/routine/{{ routine.id }}/view-workouts/legs' class="item">Legs</a>
                                 <a href='/routine/{{ routine.id }}/view-workouts/back' class="item">Back</a>
@@ -61,16 +62,18 @@
                             <div class="close-btn" onclick="toggleclick()"><i class='bx bx-x'></i></div>
                             <label for="workout-form">Create Chest Workout</label>
                             <div class="browse-workouts">
-                                {% for exercise in exercises %}
-                                <a href='/routine/{{routine.id}}/workout/{{workout.id}}' class="card-workouts">
-                                    <div class="card-text">
-                                        <h3>{{exercise.name}}</h3>
-                                    </div>
-                                    <div class="edit-button">
-                                        <input type="checkbox" name="" id="">
-                                    </div>
-                                </a>
-                                {% endfor %}
+                                <div class="workout-cards">
+                                    {% for exercise in exercises %}
+                                    <a href='/routine/{{routine.id}}/workout/{{workout.id}}' class="card-workouts">
+                                        <div class="card-text">
+                                            <h3>{{exercise.name}}</h3>
+                                        </div>
+                                        <div class="edit-button">
+                                            <input type="checkbox" name="" id="">
+                                        </div>
+                                    </a>
+                                    {% endfor %}
+                                </div>
                                 <div class="add-workout-btn" onclick="toggleclick()">
                                     <button>Add Workout</button>
                                 </div>
@@ -81,17 +84,19 @@
             </div>
         </div>
         <div class="split">
-            <div class="workout-container">
-                {% for workout in workouts %}
-                <a href='/routine/{{routine.id}}/edit-workout/{{workout.id}}' class="card-workouts">
-                    <div class="card-text">
-                        <h3>{{workout.workout.name}}</h3>
-                        <p>3 Workouts day</p>
-                    </div>
-                    <div class="edit-button">
-                    </div>
-                </a>
-                {% endfor %}
+            <div>
+                <div class="workout-container">
+                    {% for workout in workouts %}
+                    <a href='/routine/{{routine.id}}/edit-workout/{{workout.id}}' class="card-workouts">
+                        <div class="card-text">
+                            <h3>{{workout.workout.name}}</h3>
+                            <p>3 Workouts day</p>
+                        </div>
+                        <div class="edit-button">
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
                 <button class="add-workout-btn" onclick="toggleclick()">
                     Add New Workouts
                 </button>
