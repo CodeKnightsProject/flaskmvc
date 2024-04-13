@@ -13,9 +13,15 @@
     <script>
         function toggleclick() {
             document.getElementById("popup-1").classList.toggle("active");
+            // Get the routine ID from the DOM
+            var routineId = document.getElementById("routine-id").value; // Assuming you have an input field with the ID "routine-id"
+
+            // Navigate to the specified URL
+            window.location.href = '/routine/' + routineId + '/view-workouts/all';
 
         }
     </script>
+
 </head>
 
 <div>
@@ -38,12 +44,12 @@
             <div class="text-container">
                 <h1>{{routine.name}}</h1>
             </div>
-            <div class="popup active" id="popup-1">
+            <div class="popup" id="popup-1">
                 <div class="overlay">
                     <div class="content">
                         <div>
                             <div class="wrapper">
-                                <a href='/routine/{{ routine.id }}/view-workouts/all' class="item">All</a>
+                                <a href='/routine/{{ routine.id }}/view-workouts/all' class="item" onclick="toggleclick()">All</a>
                                 <a href='/routine/{{ routine.id }}/view-workouts/chest' class="item">chest</a>
                                 <a href='/routine/{{ routine.id }}/view-workouts/legs' class="item">Legs</a>
                                 <a href='/routine/{{ routine.id }}/view-workouts/back' class="item">Back</a>
@@ -86,9 +92,9 @@
                     </div>
                 </a>
                 {% endfor %}
-                <div class="add-workout-btn" onclick="toggleclick()">
-                    <a href='/routine/{{ routine.id }}/view-workouts/all' >Add New Workouts</a>
-                </div>
+                <button class="add-workout-btn" onclick="toggleclick()">
+                    Add New Workouts
+                </button>
             </div>
 
             <div class="exercise">
