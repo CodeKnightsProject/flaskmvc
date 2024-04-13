@@ -16,8 +16,12 @@ def rename(self, name):
         return True
     return None
 
-def addWorkout(routine, workout, sets, reps, restTime):
-    newRoutineWorkout = RoutineWorkouts(routine, workout, sets, reps, restTime)
+def addWorkout(routine_id, workout_id):
+    exist=RoutineWorkouts.query.filter_by(routine_id=routine_id, workout_id=workout_id).first()
+    if exist:
+        return None
+    
+    newRoutineWorkout = RoutineWorkouts(routine_id, workout_id, 3, 8, 45)
     db.session.add(newRoutineWorkout)
     db.session.commit()
     return newRoutineWorkout

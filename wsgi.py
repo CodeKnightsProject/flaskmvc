@@ -16,9 +16,10 @@ migrate = get_migrate(app)
 def initialize():
     db.drop_all()
     db.create_all()
+
     user = create_user('bob', 'bobpass', 'bob', 'doe')
     routine1 = createRoutine(user, "Chest Routine")
-    routine2 = createRoutine(user, "Back Routine")
+    # routine2 = createRoutine(user, "Back Routine")
     
     # print(routine.owner.firstName)
 
@@ -42,16 +43,21 @@ def initialize():
 
     workout1 = getWorkout(1)
     workout2 = getWorkout(2)
-    addWorkout(routine1, workout1, 3, 8, 45)
-    addWorkout(routine2, workout1, 3, 8, 45)
-    addWorkout(routine1,workout2, 3, 8, 45)
+    workout3 = getWorkout(3)
+    workout4 = getWorkout(4)
+    workout4 = getWorkout(10)
 
-    
+    # print(workout4.name)
+
+    addWorkout(1, 1)
+    addWorkout(1, 2)
+    addWorkout(1, 3)
+    addWorkout(1, 4)
 
     for routine in user.routines:
-        print(routine.name)
-        for workouts in routine.workouts:
-            print(workouts.workout.name)
+        # print(routine.name)
+        for workout in routine.workouts:
+            print(workout.sets)
 
     print('database intialized')
 

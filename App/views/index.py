@@ -57,14 +57,13 @@ def initialize_db():
 def index_page():
   initialize_db()
   bob = User.query.get(1)
-  routine1 = createRoutine(bob, "Chest Routine")
-  routine2 = createRoutine(bob, "Back Routine")
-  workout1 = getWorkout(1)
-  workout2 = getWorkout(2)
-  addWorkout(routine1, workout1, 3, 8, 45)
-  addWorkout(routine1, workout1, 3, 8, 45)
-  addWorkout(routine1, workout2, 3, 8, 45)
+  createRoutine(bob, "Chest Routine")
+  createRoutine(bob, "Back Routine")
   
+  addWorkout(1, 1)
+  addWorkout(1, 2)
+  addWorkout(1, 3)
+  addWorkout(1, 4)
 
   return render_template('login.html', user=bob)
 

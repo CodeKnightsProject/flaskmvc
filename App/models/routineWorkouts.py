@@ -9,17 +9,13 @@ class RoutineWorkouts(db.Model):
 	reps = db.Column(db.Integer, nullable = False)
 	rest_time = db.Column(db.Integer, nullable = False)
 	
-
-	# routines = db.relationship('Routine', back_populates='workouts'
 	workout = db.relationship('Workouts')
 
-	def __init__(self, routine, workout, sets, reps, restTime):
-		# self.routine = routine
-		# self.workout = workout
+	def __init__(self, routine_id, workout_id, sets, reps, restTime):
 		self.sets = sets
 		self.reps = reps
 		self.rest_time = restTime
-		self.routine_id = routine.id
-		self.workout_id = workout.id
+		self.routine_id = routine_id
+		self.workout_id = workout_id
 
 

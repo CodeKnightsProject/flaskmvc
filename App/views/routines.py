@@ -21,10 +21,8 @@ routines_views = Blueprint('routines_views', __name__, template_folder='../templ
 
 @routines_views.route('/routine/<int:id>', methods=['GET'])
 @routines_views.route('/routine/<int:id>/edit-workout/<int:routine_workout_id>', methods=['GET', 'POST'])
-@routines_views.route('/routine/<int:id>/view-workouts/<category>', methods=['GET'])
 @jwt_required()
-def routine_workouts(id, routine_workout_id=1, category="all"):
-  exercises= get_workouts_by_bodyPart(category)
+def routine_workouts(id, routine_workout_id=1):
   selected_routine = get_routine(id)
   workouts = selected_routine.workouts # workouts has list of routineWorkout objects
   workout = get_routine_workout(routine_workout_id) # workout has record routineWorkout object 
@@ -37,7 +35,7 @@ def routine_workouts(id, routine_workout_id=1, category="all"):
     data = request.form
     workout = update_routine_workout(sets=int(data['sets']),reps=int(data['reps']), rest_time=int(data['rest-time']), id=workout.id)
   
-  return render_template('routine.html', routine=selected_routine, workouts=workouts, workout=workout, exercises=exercises)
+  return render_template('routine.html', routine=selected_routine, workouts=workouts, workout=workout)
 
 @routines_views.route('/delete/<int:routine_workout_id>', methods=['GET'])
 @jwt_required()
@@ -50,7 +48,17 @@ def delete_routine_workout_action(routine_workout_id):
 def view_my_routines():
   return render_template('views.html', user=jwt_current_user)
 
-# @routines_views.route('/routine/<int:routine_id>/add-workout/<int:routine_workout_id>', methods=['GET', 'POST'])
-# @jwt_required()
-# def view_my_routines(routine_workout_id):
-  
+@routines_views.route('/routine/<int:routine_id>/add-workouts/<category>', methods=['GET','POST'])
+@jwt_required()
+def add_workouts_routine(routine_id, category="all"):
+  data=None
+  if request.method == 'POST':
+    data = request.form
+    exercise_ids = data.getlist('exercise-id')
+    for exercise_id in exercise_ids:
+      addWorkout(routine_id=routine_id, workout_id=exercise_id)
+
+  exercises= get_workouts_by_bodyPart(category)
+  selected_routine = get_routine(routine_id)
+  workouts = selected_routine.workouts # workouts has list of routineWorkout objects
+  return render_template('routines2.html', routine=selected_routine, workouts=workouts, exercises=exercises)

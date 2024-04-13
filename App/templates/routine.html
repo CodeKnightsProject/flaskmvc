@@ -45,43 +45,6 @@
             <div class="text-container">
                 <h1>{{routine.name}}</h1>
             </div>
-            <div class="popup" id="popup-1">
-                <div class="overlay">
-                    <div class="content">
-                        <div>
-                            <div class="wrapper">
-                                <a href='/routine/{{ routine.id }}/view-workouts/all' class="item">All</a>
-                                <a href='/routine/{{ routine.id }}/view-workouts/chest' class="item">chest</a>
-                                <a href='/routine/{{ routine.id }}/view-workouts/legs' class="item">Legs</a>
-                                <a href='/routine/{{ routine.id }}/view-workouts/back' class="item">Back</a>
-                                <a href='/routine/{{ routine.id }}/view-workouts/arms' class="item">Arms</a>
-                                <a href='/routine/{{ routine.id }}/view-workouts/waist' class="item">Abs</a>
-                            </div>
-                        </div>
-                        <form action="POST">
-                            <div class="close-btn" onclick="toggleclick()"><i class='bx bx-x'></i></div>
-                            <label for="workout-form">Create Chest Workout</label>
-                            <div class="browse-workouts">
-                                <div class="workout-cards">
-                                    {% for exercise in exercises %}
-                                    <a href='/routine/{{routine.id}}/workout/{{workout.id}}' class="card-workouts">
-                                        <div class="card-text">
-                                            <h3>{{exercise.name}}</h3>
-                                        </div>
-                                        <div class="edit-button">
-                                            <input type="checkbox" name="" id="">
-                                        </div>
-                                    </a>
-                                    {% endfor %}
-                                </div>
-                                <div class="add-workout-btn" onclick="toggleclick()">
-                                    <button>Add Workout</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="split">
             <div>
@@ -97,9 +60,9 @@
                     </a>
                     {% endfor %}
                 </div>
-                <button class="add-workout-btn" onclick="toggleclick()">
-                    Add New Workouts
-                </button>
+                <div class="split-button">
+                    <a href='/routine/{{routine.id}}/add-workouts/all'>Add New Workouts</a>
+                </div>
             </div>
 
             <div class="exercise">
