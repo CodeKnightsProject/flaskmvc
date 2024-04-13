@@ -38,28 +38,27 @@
             <div class="text-container">
                 <h1>{{routine.name}}</h1>
             </div>
-            <div class="popup" id="popup-1">
+            <div class="popup active" id="popup-1">
                 <div class="overlay">
                     <div class="content">
                         <div>
                             <div class="wrapper">
-                                <a onclick="" class="item">All</a>
-                                <a onclick="" class="item">chest</a>
-                                <a onclick="" class="item">Legs</a>
-                                <a onclick="" class="item">Back</a>
-                                <a onclick="" class="item">Arms</a>
-                                <a onclick="" class="item">Abs</a>
+                                <a href='/routine/{{ routine.id }}/view-workouts/all' class="item">All</a>
+                                <a href='/routine/{{ routine.id }}/view-workouts/chest' class="item">chest</a>
+                                <a href='/routine/{{ routine.id }}/view-workouts/legs' class="item">Legs</a>
+                                <a href='/routine/{{ routine.id }}/view-workouts/back' class="item">Back</a>
+                                <a href='/routine/{{ routine.id }}/view-workouts/arms' class="item">Arms</a>
+                                <a href='/routine/{{ routine.id }}/view-workouts/waist' class="item">Abs</a>
                             </div>
                         </div>
-                        <form action="">
+                        <form action="POST">
                             <div class="close-btn" onclick="toggleclick()"><i class='bx bx-x'></i></div>
                             <label for="workout-form">Create Chest Workout</label>
                             <div class="browse-workouts">
-                                {% for workout in workouts %}
+                                {% for exercise in exercises %}
                                 <a href='/routine/{{routine.id}}/workout/{{workout.id}}' class="card-workouts">
                                     <div class="card-text">
-                                        <h3>{{workout.workout.name}}</h3>
-                                        <p>3 Workouts day</p>
+                                        <h3>{{exercise.name}}</h3>
                                     </div>
                                     <div class="edit-button">
                                         <input type="checkbox" name="" id="">
@@ -78,7 +77,7 @@
         <div class="split">
             <div class="workout-container">
                 {% for workout in workouts %}
-                <a href='/routine/{{routine.id}}/workout/{{workout.id}}' class="card-workouts">
+                <a href='/routine/{{routine.id}}/edit-workout/{{workout.id}}' class="card-workouts">
                     <div class="card-text">
                         <h3>{{workout.workout.name}}</h3>
                         <p>3 Workouts day</p>
@@ -88,35 +87,47 @@
                 </a>
                 {% endfor %}
                 <div class="add-workout-btn" onclick="toggleclick()">
-                    <button>Add Workout</button>
+                    <a href='/routine/{{ routine.id }}/view-workouts/all' >Add New Workouts</a>
                 </div>
             </div>
 
             <div class="exercise">
                 <div class="form-container">
                     <div class="routine-form">
-                        <h2>Edit Routine</h2>
+                        <h2>Edit {{workout.workout.name}} Workout</h2>
                     </div>
+                    <form method="POST" action='/routine/{{routine.id}}/edit-workout/{{workout.id}}'>
 
-                    <form method="POST" action=''>
-                        <label for="guests">Routine Name:</label>
-                        <input type="text" name="routine-name" id="" placeholder="Routine Name">
-                        <label for="guests">Number of Sets:</label>
-                        <input type="number" id="guests" name="min-nights" min="1" required>
-                        <label for="guests">Number of Reps:</label>
-                        <input type="number" id="guests" name="min-nights" min="1" required>
-                        <div class="checkbox-group">
-                            <label>Weights Needed:</label>
-                            <label><input type="checkbox" name="pets" value="not-allowed" onchange="adjustValue(this)">
-                                yes</label>
-                            <label><input type="checkbox" name="smoking" value="not-allowed"
-                                    onchange="adjustValue(this)"> no</label>
+                        <div class="form-split">
+                            <div class="split-form-top">
+                                <div>
+                                    <label for="workout-form">Number of Sets:</label>
+                                    <input type="number" id="guests" name="sets" min=3 required value={{workout.sets}}>
+                                </div>
+                            </div>
+                            <div class="form-spilt-bottom">
+                                <label for="workout-form">Number of Reps:</label>
+                                <input type="number" id="guests" name="reps" min=3 required value={{workout.reps}}>
+                                <label for="workout-form">Rest Time between Sets:</label>
+                                <input type="number" id="guests" name="rest-time" required value={{workout.rest_time}}>
+                            </div>
+                            <div class="bodypart">
+                                <label for="bodypart">Body Part:</label>
+                                <p>{{workout.workout.bodyPart}}</p>
+                            </div>
+                            <div class="equipment">
+                                <label for="equipment">Equipment:</label>
+                                <p>{{workout.workout.equipment}}</p>
+                            </div>
+                            <div class="instructions">
+                                <label for="instructions">Instructions:</label>
+                                <p>{{workout.workout.instructions}}</p>
+                            </div>
+                            <div class="split-button">
+                                <button type="submit">Submit</button>
 
-                        </div>
-                        <label for="guests">Weight in kg:</label>
-                        <input type="number" id="guests" name="min-nights" min="1" required>
-
-                        <button type="submit">Submit</button>
+                                <a href='/delete/{{workout.id}}'>Delete</a>
+                            </div>
                     </form>
                 </div>
             </div>
