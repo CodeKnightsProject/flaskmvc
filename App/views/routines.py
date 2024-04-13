@@ -41,3 +41,9 @@ def routine_workouts(id, routine_workout_id=1):
 def delete_routine_workout_action(routine_workout_id):
   removeWorkout(routine_workout_id)
   return redirect(url_for('routines_views.routine_workouts', id=1))
+
+@routines_views.route('/myroutines', methods=['GET'])
+@jwt_required()
+def view_my_routines():
+  
+  return render_template('views.html', user=jwt_current_user)
