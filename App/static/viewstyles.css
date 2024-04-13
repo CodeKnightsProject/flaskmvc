@@ -138,6 +138,7 @@ div:hover::after {
 }
 
 .button-container {
+  width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,8 +149,7 @@ div:hover::after {
   justify-content: center;
   align-items: center;
   width: 100px;
-  margin-right: 80px;
-  margin-left: 80px;
+  margin-right: 20px;
   padding: 10px;
   background-color: #5cb85c;
   color: white;
@@ -176,8 +176,7 @@ div:hover::after {
 }
 
 .edit-button {
-  width: 100px;
-  margin-right: 50px;
+  width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;

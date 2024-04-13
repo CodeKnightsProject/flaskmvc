@@ -24,8 +24,10 @@
     function toggleEdit() {
         var button = document.getElementById("edit-button");
 
-        window.location.href = '/routine/{{ routine.id }}'
-        
+        var routineId = document.getElementById("routine-id").value;
+
+        window.location.href = '/routine/' + routineId;
+
     }
 
 </script>
@@ -51,19 +53,19 @@
                 <div class="close-btn" onclick="toggleclick()"><i class='bx bx-x'></i></div>
                 <div class="bodypart">
                     <label for="">Body Part:</label>
-                    <p>{{workout.workout.bodyPart}}</p>
+                    <p>blh blh</p>
                 </div>
                 <div class="bodypart">
                     <label for="">Body Part:</label>
-                    <p>{{workout.workout.bodyPart}}</p>
+                    <p>blh blh</p>
                 </div>
                 <div class="bodypart">
                     <label for="">Body Part:</label>
-                    <p>{{workout.workout.bodyPart}}</p>
+                    <p>blh blh</p>
                 </div>
                 <div class="bodypart">
                     <label for="">Body Part:</label>
-                    <p>{{workout.workout.bodyPart}}</p>
+                    <p>blh blh</p>
                 </div>
             </div>
         </div>
@@ -82,12 +84,12 @@
                             <p>3 Workouts day</p>
                         </div>
                     </a>
-                        <div class="edit-button">
-                            <div class="button-container">
-                                <button id="edit-button" onclick="toggleEdit()">Edit</button>
-                                <button id="" conclick="">Delete</button>
-                            </div>
+                    <div class="edit-button">
+                        <div class="button-container">
+                            <a href="">Edit</a>
+                            <a href="">Delete</a>
                         </div>
+                    </div>
 
                 </div>
                 {% endfor %}
