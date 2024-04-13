@@ -97,20 +97,6 @@ body {
 .card-workouts:hover {
   box-shadow: 0 5px 35px 0px rgba(0, 0, 0, 0.1);
 }
-.card-workouts:hover::before,
-div:hover::after {
-  display: block;
-  content: "";
-  position: absolute;
-  background: #face30;
-  border-radius: 10px;
-  z-index: -1;
-  animation: 1s;
-}
-.card-workouts:hover:after {
-  background: #ff7200;
-  animation: 2s;
-}
 
 .workout-container {
   height: 400px;
@@ -123,12 +109,99 @@ div:hover::after {
   margin-left: 100px;
   color: black;
 }
-
 .text-container {
   margin-top: 20px;
   margin-left: 50px;
   margin-bottom: 40px;
 }
+
+.top-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.wrapper {
+  width: 850px;
+  max-height: 120px;
+  display: flex;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+.wrapper .item {
+  min-width: 110px;
+  height: 110px;
+  line-height: 110px;
+  text-align: center;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #f0f0f0;
+  text-decoration: none;
+  color: black;
+}
+
+.item:hover {
+  box-shadow: 0 5px 35px 0px rgba(0, 0, 0, 0.1);
+}
+
+.popup .overlay {
+  position: fixed;
+  top: 30px;
+  left: 270px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  display: none;
+}
+
+.popup .content {
+  position: absolute;
+  box-shadow: 0 5px 35px 0px rgba(0, 0, 0, 0.1);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: #fff;
+  width: 800px;
+  height: 600px;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.close-btn {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 30px;
+  height: 30px;
+  background: #222;
+  color: #fff;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.popup.active .overlay {
+  display: block;
+}
+
+.popup.active .content {
+  transition: all 300ms ease-in-out;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.add-workout-btn {
+  margin-top: 40px;
+}
+
+
 
 .split {
   position: relative;
@@ -215,7 +288,7 @@ form {
   margin-bottom: 15px;
 }
 
-.split-button a{
+.split-button a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -238,12 +311,12 @@ form {
   margin-bottom: 15px;
 }
 
-.split-button{
+.split-button {
   display: flex;
   justify-content: center;
 }
 
-.split-button button{
+.split-button button {
   width: 100px;
   margin-left: 80px;
 }
@@ -252,15 +325,15 @@ form {
   background-color: #4cae4c;
 }
 
-.bodypart{
+.bodypart {
   margin-bottom: 15px;
 }
 
-.equipment{
+.equipment {
   margin-bottom: 15px;
 }
 
-.instructions{
+.instructions {
   margin-bottom: 15px;
 }
 
@@ -290,5 +363,3 @@ button {
 button:hover {
   background-color: #4aa3f9;
 }
-
-

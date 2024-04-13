@@ -19,8 +19,8 @@
                     alt="">
             </ul>
             <ul class="left-side">
-                <li><a href="">Home</a></li>
-                <li><a href="{{ url_for('routines_views.view_my_routines') }}" class="active">Routines</a></li>
+                <li><a href="" class="active">Home</a></li>
+                <li><a href="">Routines</a></li>
                 <li><a href="">Workouts</a></li>
                 <li><a href="">Logout</a></li>
             </ul>
@@ -32,16 +32,15 @@
         </div>
         <div class="split">
             <div class="workout-container">
-                <!-- <h1>{{user.routines}}</h1> -->
-                {% for routine in user.routines %}
-                    <a href='/routine/{{routine.id}}' class="card-workouts">
-                        <div class="card-text">
-                            <h3>{{routine.name}}</h3>
-                            <!-- <p>3 Workouts day</p> -->
-                        </div>
-                        <div class="edit-button">
-                        </div>
-                    </a>
+                {% for workout in workouts %}
+                <a href="" class="card-workouts">
+                    <div class="card-text">
+                        <h3>{{workout.workout.name}}</h3>
+                        <p>3 Workouts day</p>
+                    </div>
+                    <div class="edit-button">
+                    </div>
+                </a>
                 {% endfor %}
             </div>
         </div> 
