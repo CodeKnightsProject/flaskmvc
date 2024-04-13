@@ -71,8 +71,6 @@ def index_page():
 @jwt_required()
 def home():
   bob = User.query.get(1)
-  # if bob:
-  #   print(bob.name)
 
   return render_template('index.html', user=bob)
 

@@ -11,14 +11,31 @@
     <title>Document</title>
 </head>
 <script>
-    function toggleclick() {
-        document.getElementById("popup-1").classList.toggle("active");
-        // Get the routine ID from the DOM
-        var routineId = document.getElementById("routine-id").value; // Assuming you have an input field with the ID "routine-id"
+    function toggleclick(routineId) {
+    fetch('/routine/' + routineId + '/workouts')
+        .then(response => response.json())
+        .then(data => {
+            const workoutsContainer = document.querySelector('.bodypart');
+            workoutsContainer.innerHTML = ''; 
+            data.workouts.forEach(workout => {
+                const workoutDiv = document.createElement('div');
+                workoutDiv.innerHTML = `
+                    <p>Workout Name: ${workout.workout.name}</p>
+                    <p>Sets: ${workout.sets}</p>
+                    <p>Reps: ${workout.reps}</p>
+                    <p>Rest Time: ${workout.rest_time}</p>
+                `;
+                workoutsContainer.appendChild(workoutDiv);
+            });
+            document.getElementById("popup-1").classList.add("active");
+        })
+        .catch(error => {
+            console.error('Error fetching workouts:', error);
+        });
+    }
 
-        // Navigate to the specified URL
-        window.location.href = '/routine/' + routineId + '/view-workouts/all';
-
+    function closePopup() {
+        document.getElementById("popup-1").classList.remove("active");
     }
 
     function toggleEdit() {
@@ -29,7 +46,6 @@
         window.location.href = '/routine/' + routineId;
 
     }
-
 </script>
 
 <body>
@@ -40,36 +56,24 @@
                     alt="">
             </ul>
             <ul class="left-side">
-                <li><a href="" class="active">Home</a></li>
+                <li><a href="{{ url_for('index_views.home') }}">Home</a></li>
                 <li><a href="{{ url_for('routines_views.view_my_routines') }}" class="active">Routines</a></li>
                 <li><a href="">Workouts</a></li>
                 <li><a href="">Logout</a></li>
             </ul>
         </nav>
     </header>
+
     <div class="popup" id="popup-1">
         <div class="overlay">
             <div class="content">
-                <div class="close-btn" onclick="toggleclick()"><i class='bx bx-x'></i></div>
-                <div class="bodypart">
-                    <label for="">Body Part:</label>
-                    <p>blh blh</p>
-                </div>
-                <div class="bodypart">
-                    <label for="">Body Part:</label>
-                    <p>blh blh</p>
-                </div>
-                <div class="bodypart">
-                    <label for="">Body Part:</label>
-                    <p>blh blh</p>
-                </div>
-                <div class="bodypart">
-                    <label for="">Body Part:</label>
-                    <p>blh blh</p>
-                </div>
+                <div class="close-btn" onclick="closePopup()"><i class='bx bx-x'></i></div>
+                    <div class="bodypart">
+                    </div>
             </div>
         </div>
     </div>
+
     <div>
         <div class="text-container">
             <h1>Routines</h1>
@@ -78,16 +82,15 @@
             <div class="workout-container">
                 {% for routine in user.routines %}
                 <div class="card-workouts">
-                    <a onclick="toggleclick()">
+                    <a onclick="toggleclick('{{routine.id}}')">
                         <div class="card-text">
                             <h3>{{routine.name}}</h3>
-                            <p>3 Workouts day</p>
                         </div>
                     </a>
                     <div class="edit-button">
                         <div class="button-container">
                             <a href="/routine/{{ routine.id }}">Edit</a>
-                            <a href="">Delete</a>
+                            <a href='/routien/delete/{{routine.id}}'>Delete</a>
                         </div>
                     </div>
 

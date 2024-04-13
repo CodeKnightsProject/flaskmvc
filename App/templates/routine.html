@@ -13,14 +13,9 @@
     <script>
         function toggleclick() {
             document.getElementById("popup-1").classList.toggle("active");
-            // Get the routine ID from the DOM
-            var routineId = document.getElementById("routine-id").value; // Assuming you have an input field with the ID "routine-id"
-
-            // Navigate to the specified URL
+            var routineId = document.getElementById("routine-id").value; 
             window.location.href = '/routine/' + routineId + '/view-workouts/all';
-
         }
-        
     </script>
 
 </head>

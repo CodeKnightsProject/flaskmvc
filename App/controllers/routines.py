@@ -54,3 +54,12 @@ def get_routine_workout(id):
         return workout
     
     return None
+
+
+def delete_routine(id):
+    routine = Routines.query.get(id)
+    if routine:
+        db.session.delete(routine)
+        db.session.commit()
+        return True
+    return None

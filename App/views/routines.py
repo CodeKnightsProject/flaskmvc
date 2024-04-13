@@ -14,7 +14,8 @@ from App.controllers import (
     get_routine_workout,
     removeWorkout,
     allWorkouts,
-    get_workouts_by_bodyPart
+    get_workouts_by_bodyPart,
+    delete_routine
   )
 
 routines_views = Blueprint('routines_views', __name__, template_folder='../templates')
@@ -44,9 +45,24 @@ def delete_routine_workout_action(routine_workout_id):
   return redirect(url_for('routines_views.routine_workouts', id=1))
 
 @routines_views.route('/myroutines', methods=['GET'])
+@routines_views.route('/myroutines/<id>', methods=['GET'])
 @jwt_required()
-def view_my_routines():
+def view_my_routines(id=None):
+  routine = None
+  if id:
+    routine=get_routine(id)
+
   return render_template('views.html', user=jwt_current_user)
+
+@routines_views.route('/routine/<int:routine_id>/workouts')
+def get_workouts_for_routine(routine_id):
+  routine = get_routine(routine_id)
+  workouts = routine.workouts
+  
+  workouts_data = [{'workout': {'name': workout.workout.name}, 'sets': workout.sets, 'reps': workout.reps, 'rest_time': workout.rest_time} for workout in workouts]
+
+  # Return the workouts data as JSON
+  return jsonify({'workouts': workouts_data})
 
 @routines_views.route('/routine/<int:routine_id>/add-workouts/<category>', methods=['GET','POST'])
 @jwt_required()
@@ -62,3 +78,9 @@ def add_workouts_routine(routine_id, category="all"):
   selected_routine = get_routine(routine_id)
   workouts = selected_routine.workouts # workouts has list of routineWorkout objects
   return render_template('routines2.html', routine=selected_routine, workouts=workouts, exercises=exercises)
+
+@routines_views.route('/routien/delete/<id>', methods=['GET'])
+@jwt_required()
+def delete_routine_action(id):
+  delete_routine(id)
+  return redirect(request.referrer)
