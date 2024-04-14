@@ -30,7 +30,6 @@
             <ul class="left-side">
                 <li><a href="{{ url_for('index_views.home') }}">Home</a></li>
                 <li><a href="{{ url_for('routines_views.view_my_routines') }}">Routines</a></li>
-                <li><a href="">Workouts</a></li>
                 <li><a href="">Logout</a></li>
             </ul>
         </nav>
@@ -55,7 +54,7 @@
                     </a>
                     {% endfor %}
                 </div>
-                <div class="split-button">
+                <div class="split-add-button">
                     <a href='/routine/{{routine.id}}/add-workouts/all'>Add New Workouts</a>
                 </div>
             </div>

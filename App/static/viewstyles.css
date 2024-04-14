@@ -151,7 +151,7 @@ div:hover::after {
   width: 100px;
   margin-right: 20px;
   padding: 10px;
-  background-color: #5cb85c;
+  background-color: #4aa3a9;
   color: white;
   border: none;
   border-radius: 4px;
@@ -161,12 +161,12 @@ div:hover::after {
 }
 
 .button-container a:hover {
-  background-color: #4cae4c;
+  box-shadow: 0 5px 35px 0px rgba(0, 0, 0, 0.1);
 }
 
 .popup .overlay {
   position: fixed;
-  top: 0px;
+  top: 80px;
   left: 0px;
   width: 100vw;
   height: 100vh;
@@ -190,9 +190,10 @@ div:hover::after {
   transform: translate(-50%, -50%) scale(0);
   background: #fff;
   width: 800px;
+  overflow: auto;
+  overflow-y: scroll;
   height: 500px;
   z-index: 2;
-  text-align: center;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -226,7 +227,7 @@ button {
   padding: 10px;
   margin-right: 20px;
   width: 50px;
-  background-color: #5cb85c;
+  background-color: #4aa3a9;
   color: white;
   border: none;
   border-radius: 4px;
@@ -240,4 +241,21 @@ button:hover {
 label {
   margin-top: 10px;
   color: #333;
+}
+
+.bodypart {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.bodypart h1{
+  font-size: 30px;
+}
+
+.routine-info {
+  display: flex;
+  justify-content: space-between;
+  margin-left: px;
 }

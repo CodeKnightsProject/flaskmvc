@@ -12,26 +12,26 @@
 </head>
 <script>
     function toggleclick(routineId) {
-    fetch('/routine/' + routineId + '/workouts')
-        .then(response => response.json())
-        .then(data => {
-            const workoutsContainer = document.querySelector('.bodypart');
-            workoutsContainer.innerHTML = ''; 
-            data.workouts.forEach(workout => {
-                const workoutDiv = document.createElement('div');
-                workoutDiv.innerHTML = `
-                    <p>Workout Name: ${workout.workout.name}</p>
+        fetch('/routine/' + routineId + '/workouts')
+            .then(response => response.json())
+            .then(data => {
+                const workoutsContainer = document.querySelector('.bodypart');
+                workoutsContainer.innerHTML = '';
+                data.workouts.forEach(workout => {
+                    const workoutDiv = document.createElement('div');
+                    workoutDiv.innerHTML = `
+                    <h1>Workout Name: ${workout.workout.name}</h1>
                     <p>Sets: ${workout.sets}</p>
                     <p>Reps: ${workout.reps}</p>
                     <p>Rest Time: ${workout.rest_time}</p>
                 `;
-                workoutsContainer.appendChild(workoutDiv);
+                    workoutsContainer.appendChild(workoutDiv);
+                });
+                document.getElementById("popup-1").classList.add("active");
+            })
+            .catch(error => {
+                console.error('Error fetching workouts:', error);
             });
-            document.getElementById("popup-1").classList.add("active");
-        })
-        .catch(error => {
-            console.error('Error fetching workouts:', error);
-        });
     }
 
     function closePopup() {
@@ -58,7 +58,6 @@
             <ul class="left-side">
                 <li><a href="{{ url_for('index_views.home') }}">Home</a></li>
                 <li><a href="{{ url_for('routines_views.view_my_routines') }}" class="active">Routines</a></li>
-                <li><a href="">Workouts</a></li>
                 <li><a href="">Logout</a></li>
             </ul>
         </nav>
@@ -68,8 +67,19 @@
         <div class="overlay">
             <div class="content">
                 <div class="close-btn" onclick="closePopup()"><i class='bx bx-x'></i></div>
-                    <div class="bodypart">
+                <div class="content-split">
+                    <div class="routine-info">
+                        <div class="bodypart">
+                            
+                        </div>
                     </div>
+                        <div class="routine-info">
+                            <div class="bodypart">
+                                
+                            </div>
+                        </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -97,6 +107,9 @@
                 </div>
                 {% endfor %}
             </div>
+        </div>
+        <div class="button-container">
+            <a href=''>Create Workout</a>
         </div>
     </div>
 
