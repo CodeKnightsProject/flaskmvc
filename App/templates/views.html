@@ -90,26 +90,30 @@
         </div>
         <div class="split">
             <div class="workout-container">
-                {% for routine in user.routines %}
-                <div class="card-workouts">
-                    <a onclick="toggleclick('{{routine.id}}')">
-                        <div class="card-text">
-                            <h3>{{routine.name}}</h3>
-                        </div>
-                    </a>
-                    <div class="edit-button">
-                        <div class="button-container">
-                            <a href="/routine/{{ routine.id }}">Edit</a>
-                            <a href='/routien/delete/{{routine.id}}'>Delete</a>
-                        </div>
-                    </div>
+                {%if user.routines %}
+                    {% for routine in user.routines %}
+                        <div class="card-workouts">
+                            <a onclick="toggleclick('{{routine.id}}')">
+                                <div class="card-text">
+                                    <h3>{{routine.name}}</h3>
+                                </div>
+                            </a>
+                            <div class="edit-button">
+                                <div class="button-container">
+                                    <a href="/routine/{{ routine.id }}">Edit</a>
+                                    <a href='/routien/delete/{{routine.id}}'>Delete</a>
+                                </div>
+                            </div>
 
-                </div>
-                {% endfor %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h1>No Routines Created</h1>
+                {% endif %}
             </div>
         </div>
         <div class="button-container">
-            <a href='/create-routine'>Create New Routine</a>
+            <a href='/create-routine/all'>Create New Routine</a>
         </div>
     </div>
 

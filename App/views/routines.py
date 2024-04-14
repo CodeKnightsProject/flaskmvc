@@ -15,7 +15,8 @@ from App.controllers import (
     removeWorkout,
     allWorkouts,
     get_workouts_by_bodyPart,
-    delete_routine
+    delete_routine,
+    createRoutine
   )
 
 routines_views = Blueprint('routines_views', __name__, template_folder='../templates')
@@ -82,12 +83,24 @@ def add_workouts_routine(routine_id, category="all"):
 @routines_views.route('/routien/delete/<id>', methods=['GET'])
 @jwt_required()
 def delete_routine_action(id):
-  delete_routine(id)
+  if id:
+    print(id)
+    delete_routine(id)
   return redirect(request.referrer)
 
 
-@routines_views.route('/create-routine/<category>', methods=['GET', 'POST'])
+@routines_views.route('/create-routine/<category>', methods=['GET'])
+@routines_views.route('/create-routine', methods=['POST'])
 @jwt_required()
 def create_routine_action(category='all'):
   exercises = get_workouts_by_bodyPart(category)
+
+  if request.method == 'POST':
+    data = request.form
+    routine = createRoutine(jwt_current_user, data['routine-name'])
+    exercise_ids = data.getlist('exercise-id')
+    for exercise_id in exercise_ids:
+      addWorkout(routine_id=routine.id, workout_id=exercise_id)
+    
+    return redirect(url_for('routines_views.view_my_routines'))
   return render_template('create.html', exercises=exercises)

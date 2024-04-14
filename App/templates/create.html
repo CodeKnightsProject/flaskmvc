@@ -36,7 +36,7 @@
         </nav>
     </header>
     <div class="routines">
-        <form action="">
+        <form method="POST" action='/create-routine'>
             <div class="top-container">
                 <div class="text-container">
                 </div>
@@ -77,12 +77,12 @@
             <div class="split">
                 <div class="form-container">
                     <label for="workout-form">Routine Name:</label>
-                    <input type="text" id="guests" name="sets" min=3 required value="" placeholder="name">
+                    <input type="text" id="guests" name="routine-name" required value="" placeholder="name">
                     <div class="bodypart">
     
                     </div>
                     <div class="split-button">
-                        <button type="submit">Submit</button>
+                        <button type="submit">Create Routine</button>
                     </div>
                 </div>
             </div>

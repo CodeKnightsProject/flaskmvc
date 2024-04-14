@@ -57,7 +57,12 @@ def get_routine_workout(id):
 
 
 def delete_routine(id):
-    routine = Routines.query.get(id)
+    routine = Routines.query.filter_by(id=id).first()
+
+    if routine.workouts:
+        for r in routine.workouts:
+            removeWorkout(r.id)
+    
     if routine:
         db.session.delete(routine)
         db.session.commit()

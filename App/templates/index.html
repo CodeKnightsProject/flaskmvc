@@ -98,7 +98,7 @@
         </div>
         <div class="padding-card">
             {% if user.routines %}
-                {% for r in user.routines %}
+                {% for r in latest %}
                 <a onclick="toggleclick('{{r.id}}')">
                     <div class="card-container">
                             <div class=" card">
