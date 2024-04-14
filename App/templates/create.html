@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/createroutinestyles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='createworkoutstyles.css') }}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <title>Document</title>
+
+    <script>
+        function toggleclick() {
+            document.getElementById("popup-1").classList.toggle("active");
+            var routineId = document.getElementById("routine-id").value;
+            window.location.href = '/routine/' + routineId + '/view-workouts/all';
+        }
+        
+    </script>
+
+</head>
+
+<div>
+    <header class="header">
+        <nav class="navbar">
+            <ul class="right-side">
+                <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/fitness-logo-design%2Cgym-logo%2Chealth-logo-template-9667c79790d895428b781ef856f03523_screen.jpg?ts=1667269400"
+                    alt="">
+            </ul>
+            <ul class="left-side">
+                <li><a href="{{ url_for('index_views.home') }}">Home</a></li>
+                <li><a href="{{ url_for('routines_views.view_my_routines') }}">Routines</a></li>
+                <li><a href="">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="routines">
+        <div class="top-container">
+            <div class="text-container">
+                <h1>{{routine.name}}</h1>
+            </div>
+            <div class="popup active" id="popup-1">
+                <div class="overlay">
+                    <div class="content">
+                        <div>
+                            <div class="wrapper">
+                                <a href='/routine/{{ routine.id }}/add-workouts/all' class="item">All</a>
+                                <a href='/routine/{{ routine.id }}/add-workouts/chest' class="item">chest</a>
+                                <a href='/routine/{{ routine.id }}/add-workouts/legs' class="item">Legs</a>
+                                <a href='/routine/{{ routine.id }}/add-workouts/back' class="item">Back</a>
+                                <a href='/routine/{{ routine.id }}/add-workouts/arms' class="item">Arms</a>
+                                <a href='/routine/{{ routine.id }}/add-workouts/waist' class="item">Abs</a>
+                            </div>
+                        </div>
+                        <form method="POST" action="" >
+                            <!-- <label for="workout-form">Create Chest Workout</label> -->
+                            <div class="browse-workouts">
+                                <div class="workout-cards">
+                                    {% for exercise in exercises %}
+                                    <div class="card-workouts">
+                                        <div class="card-text">
+                                            <p>{{exercise.name}}</p>
+                                            <p>{{exercise.equipment}}</p>
+                                            <p>{{exercise.instructions}}</p>
+
+                                        </div>
+                                        <div class="edit-button">
+                                            <input type="checkbox" name="exercise-id" value="{{exercise.id}}">
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="split">
+            <div class="form-container">
+                <form class="" method="POST" action='/routine/{{routine.id}}/edit-workout/{{workout.id}}'>
+                        <label for="workout-form">Routine Name:</label>
+                        <input type="text" id="guests" name="sets" min=3 required value="" placeholder="name">
+                        <label for="workout-form">Number of Sets:</label>
+                        <input type="number" id="guests" name="reps" min=3 required >
+                        <label for="workout-form">Number of Reps:</label>
+                        <input type="number" id="guests" name="reps" min=3 required >
+                        <label for="workout-form">Rest Time between Sets:</label>
+                        <input type="number" id="guests" name="rest-time" required >
+                        <div class="bodypart">
+                            
+                        </div>
+                        <div class="split-button">
+                            <button type="submit">Submit</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

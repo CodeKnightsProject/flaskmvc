@@ -1,0 +1,370 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: white;
+}
+
+.header {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 25px 12.5%;
+  background: #dee1e5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.right-side img {
+  max-width: 160px;
+  max-height: 50px;
+}
+
+.right-side {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.right-side li {
+  margin-right: 15px; /* Adjust as needed for spacing between items */
+}
+
+.left-side {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.left-side li {
+  margin-right: auto; /* Push the "Logout" link to the left */
+}
+
+.navbar a {
+  position: relative;
+  font-size: 16px;
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  margin-right: 30px;
+  transition: 0.3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  color: #02bdd6;
+}
+
+.card {
+  margin-right: 50px;
+  margin-bottom: 50px;
+  background-color: white;
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: Opx 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.card-workouts {
+  margin-top: 20px;
+  margin-right: 50px;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: Opx 2px 4px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+}
+
+.card-workouts:hover {
+  box-shadow: 0 5px 35px 0px rgba(0, 0, 0, 0.1);
+}
+
+.workout-container {
+  height: 400px;
+  width: 550px;
+  overflow: auto;
+  overflow-y: scroll;
+}
+
+.workout-cards {
+  height: 300px;
+  overflow: auto;
+  overflow-y: scroll;
+}
+
+.card-text {
+  margin-left: 100px;
+  color: black;
+}
+.text-container {
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-bottom: 40px;
+}
+
+.top-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.wrapper {
+  width: 850px;
+  max-height: 120px;
+  display: flex;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+.wrapper .item {
+  min-width: 110px;
+  height: 110px;
+  line-height: 110px;
+  text-align: center;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #f0f0f0;
+  text-decoration: none;
+  color: black;
+}
+
+.item:hover {
+  box-shadow: 0 5px 35px 0px rgba(0, 0, 0, 0.1);
+}
+
+.popup .overlay {
+  position: fixed;
+  top: 30px;
+  left: 280px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  display: none;
+}
+
+.popup .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: #fff;
+  width: 800px;
+  height: 600px;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.close-btn {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 30px;
+  height: 30px;
+  background: #222;
+  color: #fff;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.popup.active .overlay {
+  display: block;
+}
+
+.popup.active .content {
+  transition: all 300ms ease-in-out;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* .add-workout-btn {
+    
+  } */
+
+.split {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.edit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 80px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.edit-button input {
+  height: 20px;
+  width: 20px;
+}
+
+.edit-button button {
+  height: 40px;
+  width: 40px;
+}
+
+.bx bxs-edit {
+  font-size: 20px;
+}
+
+.exercise {
+  width: 800px;
+  display: flex;
+  justify-content: center;
+}
+
+.button-container {
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-r {
+  text-decoration: none;
+  background-color: #c8f8ff;
+  border-radius: 5px;
+  font-size: 15px;
+  height: 50px;
+  width: 200px;
+}
+
+.button-w {
+  margin-left: 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  background-color: #4aa3a9;
+  font-size: 15px;
+  height: 50px;
+  width: 200px;
+}
+
+.button-w text {
+  color: white;
+}
+
+.form-container {
+  width: 500px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.split-form-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.split-button a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  margin-left: 80px;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 10px;
+}
+
+.form-spilt-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.split-button {
+
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 50px;
+}
+
+.split-button button {
+  width: 100px;
+}
+
+.split-button a:hover {
+  background-color: #4cae4c;
+}
+
+.bodypart {
+  margin-bottom: 15px;
+}
+
+.equipment {
+  margin-bottom: 15px;
+}
+
+.instructions {
+  margin-bottom: 15px;
+}
+
+label {
+  margin-top: 10px;
+  color: #333;
+}
+
+input,
+select {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4cae4c;
+}
+
