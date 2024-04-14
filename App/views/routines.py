@@ -24,14 +24,18 @@ routines_views = Blueprint('routines_views', __name__, template_folder='../templ
 @routines_views.route('/routine/<int:id>', methods=['GET'])
 @routines_views.route('/routine/<int:id>/edit-workout/<int:routine_workout_id>', methods=['GET', 'POST'])
 @jwt_required()
-def routine_workouts(id, routine_workout_id=1):
+def routine_workouts(id, routine_workout_id=None):
   selected_routine = get_routine(id)
   workouts = selected_routine.workouts # workouts has list of routineWorkout objects
-  workout = get_routine_workout(routine_workout_id) # workout has record routineWorkout object 
   data=None
-
+  workout = None
+  
+  if workouts:
+    workout = workouts[0] # workout has record routineWorkout object 
   if 'routine_workout_id' in request.view_args:
-    routine_workout_id = request.view_args['routine_workout_id']
+    workout = get_routine_workout(routine_workout_id)
+  
+  
     
   if request.method == "POST":
     data = request.form

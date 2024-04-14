@@ -58,7 +58,7 @@
             <ul class="left-side">
                 <li><a href="{{ url_for('index_views.home') }}">Home</a></li>
                 <li><a href="{{ url_for('routines_views.view_my_routines') }}" class="active">Routines</a></li>
-                <li><a href="">Logout</a></li>
+                <li><a href="{{ url_for('auth_views.logout_action') }}">Logout</a></li>
             </ul>
         </nav>
     </header>
