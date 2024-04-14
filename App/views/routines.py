@@ -68,16 +68,24 @@ def get_workouts_for_routine(routine_id):
 @routines_views.route('/routine/<int:routine_id>/add-workouts/<category>', methods=['GET','POST'])
 @jwt_required()
 def add_workouts_routine(routine_id, category="all"):
+
   data=None
+  exercises= get_workouts_by_bodyPart(category)
+  selected_routine = get_routine(routine_id)
+  workouts = selected_routine.workouts # workouts has list of routineWorkout objects
+  workout = get_routine_workout(1)
+
   if request.method == 'POST':
     data = request.form
     exercise_ids = data.getlist('exercise-id')
     for exercise_id in exercise_ids:
       addWorkout(routine_id=routine_id, workout_id=exercise_id)
 
-  exercises= get_workouts_by_bodyPart(category)
-  selected_routine = get_routine(routine_id)
-  workouts = selected_routine.workouts # workouts has list of routineWorkout objects
+    return redirect(url_for('routines_views.routine_workouts', id=routine_id, routine_workout_id=1))
+
+
+
+
   return render_template('routines2.html', routine=selected_routine, workouts=workouts, exercises=exercises)
 
 @routines_views.route('/routien/delete/<id>', methods=['GET'])
