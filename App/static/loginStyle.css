@@ -137,6 +137,20 @@ body {
   color: #151515;
 }
 
+.user-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.user-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .form-box h2 {
   font-size: 32px;
   text-align: center;
@@ -186,6 +200,7 @@ body {
 }
 
 .remember-forgot {
+  width: 350px;
   font-size: 14.5px;
   font-weight: 500;
   margin: -15px 0 15px;
@@ -208,7 +223,7 @@ body {
 }
 
 .btn {
-  width: 100%;
+  width: 50%;
   height: 45px;
   background: #286dbf;
   border: none;

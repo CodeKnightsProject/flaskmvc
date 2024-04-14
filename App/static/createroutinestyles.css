@@ -300,7 +300,7 @@ form {
   margin-left: 80px;
   padding: 10px;
   margin-top: 20px;
-  background-color: #5cb85c;
+  background-color: #4aa3a9;
   color: white;
   border: none;
   border-radius: 4px;
@@ -326,7 +326,7 @@ form {
 }
 
 .split-button a:hover {
-  background-color: #4cae4c;
+  box-shadow: 0 5px 35px 0px rgba(0, 0, 0, 0.1);
 }
 
 .bodypart {
@@ -357,7 +357,7 @@ select {
 button {
   padding: 10px;
   margin-top: 20px;
-  background-color: #5cb85c;
+  background-color: #4aa3a9;
   color: white;
   border: none;
   border-radius: 4px;
@@ -365,5 +365,5 @@ button {
 }
 
 button:hover {
-  background-color: #4cae4c;
+  box-shadow: 0 5px 35px 0px rgba(0, 0, 0, 0.1);
 }
