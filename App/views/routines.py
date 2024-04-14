@@ -35,19 +35,17 @@ def routine_workouts(id, routine_workout_id=None):
   if 'routine_workout_id' in request.view_args:
     workout = get_routine_workout(routine_workout_id)
   
-  
-    
   if request.method == "POST":
     data = request.form
     workout = update_routine_workout(sets=int(data['sets']),reps=int(data['reps']), rest_time=int(data['rest-time']), id=workout.id)
   
   return render_template('routine.html', routine=selected_routine, workouts=workouts, workout=workout)
 
-@routines_views.route('/delete/<int:routine_workout_id>', methods=['GET'])
+@routines_views.route('/routine/<int:routine_id>/delete/<int:routine_workout_id>', methods=['GET'])
 @jwt_required()
-def delete_routine_workout_action(routine_workout_id):
+def delete_routine_workout_action(routine_workout_id, routine_id):
   removeWorkout(routine_workout_id)
-  return redirect(url_for('routines_views.routine_workouts', id=1))
+  return redirect(url_for('routines_views.routine_workouts', id=routine_id))
 
 @routines_views.route('/myroutines', methods=['GET'])
 @routines_views.route('/myroutines/<id>', methods=['GET'])
@@ -86,9 +84,6 @@ def add_workouts_routine(routine_id, category="all"):
       addWorkout(routine_id=routine_id, workout_id=exercise_id)
 
     return redirect(url_for('routines_views.routine_workouts', id=routine_id, routine_workout_id=1))
-
-
-
 
   return render_template('routines2.html', routine=selected_routine, workouts=workouts, exercises=exercises)
 

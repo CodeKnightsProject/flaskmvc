@@ -25,8 +25,12 @@ def identify_page():
     return render_template('message.html', title="Identify", message=f"You are logged in as {current_user.id} - {current_user.username}")
     
 
-@auth_views.route('/login', methods=['POST'])
+@auth_views.route('/login', methods=['POST', 'GET'])
 def login_action():
+
+    if request.method == 'GET':
+        return render_template('login.html')
+    
     data = request.form
     token = login(data['username'], data['password'])
     response = redirect('/home')
@@ -40,7 +44,7 @@ def login_action():
 
 @auth_views.route('/logout', methods=['GET'])
 def logout_action():
-    response = redirect(request.referrer) 
+    response = redirect(url_for('auth_views.login_action'))
     flash("Logged Out!")
     unset_jwt_cookies(response)
     return response
