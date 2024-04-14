@@ -97,11 +97,14 @@ body {
 }
 
 .card-container {
-  margin-left: 50px;
   flex-wrap: wrap;
   margin-top: 10px;
   text-decoration: none;
   color: black;
+}
+
+.padding-card{
+  margin-left: 50px;
 }
 
 .card {
@@ -126,7 +129,6 @@ body {
 
 .button-container {
   margin-top: 20px;
-  margin-left: 50px;
 }
 
 .button-s {

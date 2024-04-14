@@ -16,7 +16,7 @@
             var routineId = document.getElementById("routine-id").value;
             window.location.href = '/routine/' + routineId + '/view-workouts/all';
         }
-        
+
     </script>
 
 </head>
@@ -36,23 +36,23 @@
         </nav>
     </header>
     <div class="routines">
-        <div class="top-container">
-            <div class="text-container">
-            </div>
-            <div class="popup active" id="popup-1">
-                <div class="overlay">
-                    <div class="content">
-                        <div>
-                            <div class="wrapper">
-                                <a href='/create-routine/all' class="item">All</a>
-                                <a href='/create-routine/chest' class="item">chest</a>
-                                <a href='/create-routine/legs' class="item">Legs</a>
-                                <a href='/create-routine/back' class="item">Back</a>
-                                <a href='/create-routine/arms' class="item">Arms</a>
-                                <a href='/create-routine/waist' class="item">Abs</a>
+        <form action="">
+            <div class="top-container">
+                <div class="text-container">
+                </div>
+                <div class="popup active" id="popup-1">
+                    <div class="overlay">
+                        <div class="content">
+                            <div>
+                                <div class="wrapper">
+                                    <a href='/create-routine/all' class="item">All</a>
+                                    <a href='/create-routine/chest' class="item">chest</a>
+                                    <a href='/create-routine/legs' class="item">Legs</a>
+                                    <a href='/create-routine/back' class="item">Back</a>
+                                    <a href='/create-routine/arms' class="item">Arms</a>
+                                    <a href='/create-routine/waist' class="item">Abs</a>
+                                </div>
                             </div>
-                        </div>
-                        <form method="POST" action="" >
                             <!-- <label for="workout-form">Create Chest Workout</label> -->
                             <div class="browse-workouts">
                                 <div class="workout-cards">
@@ -70,31 +70,23 @@
                                     {% endfor %}
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="split">
-            <div class="form-container">
-                <form class="" method="POST" action=''>
+            <div class="split">
+                <div class="form-container">
                     <label for="workout-form">Routine Name:</label>
                     <input type="text" id="guests" name="sets" min=3 required value="" placeholder="name">
-                    <label for="workout-form">Number of Sets:</label>
-                    <input type="number" id="guests" name="reps" min=3 required >
-                    <label for="workout-form">Number of Reps:</label>
-                    <input type="number" id="guests" name="reps" min=3 required >
-                    <label for="workout-form">Rest Time between Sets:</label>
-                    <input type="number" id="guests" name="rest-time" required >
                     <div class="bodypart">
-                        
+    
                     </div>
                     <div class="split-button">
                         <button type="submit">Submit</button>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 </body>

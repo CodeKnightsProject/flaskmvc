@@ -96,28 +96,29 @@
             <h1>Recent Routines</h1>
             <button onclick="redirectToViewRoutines()" class="button-s">View All</button>
         </div>
-        {% if user.routines %}
-            {% for r in user.routines %}
-                <div class="card-container">
-                    <a onclick="toggleclick('{{r.id}}')"">
-                        <div class=" card">
-                        <div class="card-text">
-                            <h3> {{r.name}}</h3>
-                            <!-- <p>3 Workouts day</p> -->
+        <div class="padding-card">
+            {% if user.routines %}
+                {% for r in user.routines %}
+                <a onclick="toggleclick('{{r.id}}')">
+                    <div class="card-container">
+                            <div class=" card">
+                            <div class="card-text">
+                                <h3> {{r.name}}</h3>
+                                <!-- <p>3 Workouts day</p> -->
+                            </div>
                         </div>
-                    </a>
-                </div>
-            {% endfor %}
-        {% endif %}
-
-    </div>
-    <div class="button-container">
-        <button onclick="redirectToCreateRoutine()" class="button-r">
-            Create Routine
-        </button>
-        <!-- <button onclick="redirectToBrowseWorkouts()" class="button-w">
-            Browse Workouts
-        </button> -->
+                        </a>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="button-container">
+            <button onclick="redirectToCreateRoutine()" class="button-r">
+                Create Routine
+            </button>
+            <!-- <button onclick="redirectToBrowseWorkouts()" class="button-w">
+                Browse Workouts
+            </button> -->
+        </div>
     </div>
     
 </body>

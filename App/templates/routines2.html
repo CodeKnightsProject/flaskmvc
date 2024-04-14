@@ -15,7 +15,7 @@
             var routineId = document.getElementById("routine-id").value;
             window.location.href = '/routine/' + routineId + '/view-workouts/all';
         }
-        
+
     </script>
 
 </head>
@@ -47,7 +47,7 @@
                     <a href='/routine/{{routine.id}}/edit-workout/{{workout.id}}' class="card-workouts">
                         <div class="card-text">
                             <h3>{{workout.workout.name}}</h3>
-                            <p>3 Workouts day</p> 
+                            <p>3 Workouts day</p>
                         </div>
                         <div class="edit-button">
                         </div>
@@ -67,8 +67,8 @@
                             <a href='/routine/{{ routine.id }}/add-workouts/waist' class="item">Abs</a>
                         </div>
                     </div>
-                    <form method="POST" action="" >
-                        <label for="workout-form"></label> 
+                    <form method="POST" action="">
+                        <label for="workout-form"></label>
                         <div class="browse-workouts">
                             <div class="workout-cards">
                                 {% for exercise in exercises %}
@@ -86,12 +86,12 @@
                                 {% endfor %}
                             </div>
                             <div class="add-workout-btn" onclick="toggleclick()">
-                                <button type="submit" >Add Workouts</button>
+                                <button type="submit">Add Workouts</button>
                             </div>
                         </div>
                     </form>
                 </div>
-        </div>
+            </div>
         </div>
     </div>
 </div>
