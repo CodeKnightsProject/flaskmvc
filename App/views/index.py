@@ -1,4 +1,5 @@
 from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify, flash, url_for
+from flask_jwt_extended import current_user as jwt_current_user
 from App.models import db
 from App.controllers import(
   create_user, 
@@ -6,7 +7,7 @@ from App.controllers import(
   createRoutine,
   get_user_by_username,
   getWorkout,
-  addWorkout
+  addWorkout,
 )
 
 from App.models import User
@@ -70,9 +71,13 @@ def index_page():
 @index_views.route('/home', methods=['GET'])
 @jwt_required()
 def home():
-  bob = User.query.get(1)
+  latest = jwt_current_user.routines
+  latest.reverse()
+  if len(latest) > 2:
+    latest = latest[:2]
+  
 
-  return render_template('index.html', user=bob)
+  return render_template('index.html', user=jwt_current_user, latest=latest)
 
 # @app.route("/app",methods=['GET'])
 # @app.route("/app/workouts",methods= ['GET'])
