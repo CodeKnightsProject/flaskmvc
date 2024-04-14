@@ -84,3 +84,10 @@ def add_workouts_routine(routine_id, category="all"):
 def delete_routine_action(id):
   delete_routine(id)
   return redirect(request.referrer)
+
+
+@routines_views.route('/create-routine/<category>', methods=['GET', 'POST'])
+@jwt_required()
+def create_routine_action(category='all'):
+  exercises = get_workouts_by_bodyPart(category)
+  return render_template('create.html', exercises=exercises)
