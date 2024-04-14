@@ -1,4 +1,5 @@
 from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify, flash, url_for
+from flask_jwt_extended import current_user as jwt_current_user
 from App.models import db
 from App.controllers import(
   create_user, 
@@ -6,7 +7,7 @@ from App.controllers import(
   createRoutine,
   get_user_by_username,
   getWorkout,
-  addWorkout
+  addWorkout,
 )
 
 from App.models import User
@@ -57,25 +58,26 @@ def initialize_db():
 def index_page():
   initialize_db()
   bob = User.query.get(1)
-  routine1 = createRoutine(bob, "Chest Routine")
-  routine2 = createRoutine(bob, "Back Routine")
-  workout1 = getWorkout(1)
-  workout2 = getWorkout(2)
-  addWorkout(routine1, workout1, 3, 8, 45)
-  addWorkout(routine1, workout1, 3, 8, 45)
-  addWorkout(routine1, workout2, 3, 8, 45)
+  createRoutine(bob, "Chest Routine")
+  createRoutine(bob, "Back Routine")
   
+  addWorkout(1, 1)
+  addWorkout(1, 2)
+  addWorkout(1, 3)
+  addWorkout(1, 4)
 
   return render_template('login.html', user=bob)
 
 @index_views.route('/home', methods=['GET'])
 @jwt_required()
 def home():
-  bob = User.query.get(1)
-  # if bob:
-  #   print(bob.name)
+  latest = jwt_current_user.routines
+  latest.reverse()
+  if len(latest) > 2:
+    latest = latest[:2]
+  
 
-  return render_template('index.html', user=bob)
+  return render_template('index.html', user=jwt_current_user, latest=latest)
 
 # @app.route("/app",methods=['GET'])
 # @app.route("/app/workouts",methods= ['GET'])

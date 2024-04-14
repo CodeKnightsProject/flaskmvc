@@ -137,6 +137,20 @@ body {
   color: #151515;
 }
 
+.user-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.user-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .form-box h2 {
   font-size: 32px;
   text-align: center;
@@ -186,6 +200,7 @@ body {
 }
 
 .remember-forgot {
+  width: 350px;
   font-size: 14.5px;
   font-weight: 500;
   margin: -15px 0 15px;
@@ -208,7 +223,7 @@ body {
 }
 
 .btn {
-  width: 100%;
+  width: 50%;
   height: 45px;
   background: #286dbf;
   border: none;
@@ -221,38 +236,10 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-/* 
+
 .flash-messages {
-  display: none;
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 300px;
-  padding: 10px;
-  background-color: #f44336;
-  color: rgb(0, 0, 0);
-  border-radius: 5px;
-  text-align: center;
-  animation: fadeOut 3s ease-in-out forwards;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
 }
-
-@keyframes fadeIn {
-  from {
-      opacity: 0;
-  }
-  to {
-      opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-      opacity: 1;
-  }
-  to {
-      opacity: 0;
-      display: none;
-  }
-}
- */
