@@ -1,29 +1,20 @@
+from App.database import db
+
 class Routines(db.Model):
+	__tablename__ = "routine"
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(255), nullable = True)
-	owner = db.Column(db.Integer, db.ForeignKey('User.id'), nullable = False)
+	ownerID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+	workouts = db.relationship('RoutineWorkouts', backref='routine')
 
-	def rename(self):
-		routine = Routines.query.filter_by(id=self.id).first
-		if routine:
-			routine.name= name
-			db.session.add(routine)
-			db.session.commit()
-			return True
-		return None
+	def __init__(self, user, name):
+		self.name =  name
+		self.owner = user
 
-	addWorkout(self):
-		new_workout = workouts.query.filter_by(id=self.id) 
+	def get_json(self):
+		return{
+			'id': self.id,
+			'owner': self.owner.firstName,
+			'Routine name': self.name
+		}
 
-		if not new_workout 
-			new_workout = workouts(id = self.id)
-			db.session.add(new_workout)
-			db.session.commit()
-
-	removeWorkout(self):
-		workout = workouts.query.filter_by(id=self.id).first
-		if workout:
-			db.session.delete(workout)
-			db.session.commit()
-			return True
-		return None

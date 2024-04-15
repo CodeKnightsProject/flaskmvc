@@ -1,11 +1,11 @@
-import click, pytest, sys
+import click, pytest, sys, csv
 from flask import Flask
 from flask.cli import with_appcontext, AppGroup
 
 from App.database import db, get_migrate
 from App.main import create_app
-from App.controllers import ( create_user, get_all_users_json, get_all_users )
-
+from App.controllers import ( create_user, get_all_users_json, get_all_users, createRoutine, createWorkout, addWorkout, getWorkout )
+from App.models import Routines
 # This commands file allow you to create convenient CLI commands for testing controllers
 
 app = create_app()
@@ -16,7 +16,49 @@ migrate = get_migrate(app)
 def initialize():
     db.drop_all()
     db.create_all()
-    create_user('bob', 'bobpass')
+
+    user = create_user('bob', 'bobpass', 'bob', 'doe')
+    routine1 = createRoutine(user, "Chest Routine")
+    # routine2 = createRoutine(user, "Back Routine")
+    
+    # print(routine.owner.firstName)
+
+    with open('exercises.csv') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if row['bodyPart'] == '':
+                row['bodyPart'] = None
+            if row['equipment'] == '':
+                row['equipment'] = None
+            if row['name'] == '':
+                row['name'] = None
+            if row['instructions/0'] == '':
+                row['instructions/0'] = None
+            if row['instructions/1'] == '':
+                row['instructions/1'] = None
+
+            instructions = row['instructions/0'] + row['instructions/1']
+            createWorkout(row['name'], row['bodyPart'], row['equipment'], instructions)
+
+
+    workout1 = getWorkout(1)
+    workout2 = getWorkout(2)
+    workout3 = getWorkout(3)
+    workout4 = getWorkout(4)
+    workout4 = getWorkout(10)
+
+    # print(workout4.name)
+
+    addWorkout(1, 1)
+    addWorkout(1, 2)
+    addWorkout(1, 3)
+    addWorkout(1, 4)
+
+    for routine in user.routines:
+        # print(routine.name)
+        for workout in routine.workouts:
+            print(workout.sets)
+
     print('database intialized')
 
 '''
