@@ -83,7 +83,7 @@ def add_workouts_routine(routine_id, category="all"):
     for exercise_id in exercise_ids:
       addWorkout(routine_id=routine_id, workout_id=exercise_id)
 
-    return redirect(url_for('routines_views.routine_workouts', id=routine_id, routine_workout_id=1))
+    return redirect(url_for('routines_views.routine_workouts', id=routine_id, routine_workout_id=None))
 
   return render_template('routines2.html', routine=selected_routine, workouts=workouts, exercises=exercises)
 
